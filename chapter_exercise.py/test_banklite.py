@@ -362,3 +362,16 @@ class TestStatementBuilder(unittest.TestCase):
         self.assertEqual(receipt["net"], 95)
         self.assertEqual(receipt["status"], "success")
         mock_calc.processing_fee.assert_called_once()
+
+
+# Question A
+# Yes, you could, however, this would be wrong because you are trying to test set, hard-coded values in order to test other functions that depend on it.
+
+# Question B
+# spec restricions the MagicMock's access to other objects not specificied in this argument. There is an AttributeError when you try do to it anyways.
+
+# Question C
+# You would be forced to use this in production code if you wanted to temporarily replace an object with a mock for testing.
+
+# Question D
+# You should not use a spy instead of a mock because it can be unsafe to do so as it uses things like network calls. You don't want to run actual transaction commands that deal with real money. Implementing mocks allows you to still test dependent functions while not messing with real databases.
